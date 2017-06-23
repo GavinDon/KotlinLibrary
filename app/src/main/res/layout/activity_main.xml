@@ -8,6 +8,70 @@
     tools:context="com.ln.kotlin.kotlinlibrary.ui.MainActivity">
 
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/home"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:drawableTop="@drawable/sel_home"
+        android:gravity="center"
+        android:text="首页"
+        android:textSize="14sp"
+        android:textColor="@drawable/home_txt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/music"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/music"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:drawableTop="@drawable/sel_news"
+        android:gravity="center"
+        android:text="音乐"
+        android:textIsSelectable="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/video"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/home"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/video"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:drawableTop="@drawable/sel_video"
+        android:gravity="center"
+        android:text="视频"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/personal"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/music"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/personal"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:drawableTop="@drawable/sel_personal"
+        android:gravity="center"
+        android:text="我"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/video"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/music"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
 </android.support.constraint.ConstraintLayout>
