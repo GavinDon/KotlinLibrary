@@ -3,6 +3,7 @@ package com.ln.kotlin.kotlinlibrary.ui
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.AppCompatTextView
+import com.jaeger.library.StatusBarUtil
 import com.ln.kotlin.kotlinlibrary.R
 import com.ln.kotlin.mylibrary.BaseActivity
 import io.reactivex.Observable
@@ -23,9 +24,12 @@ class WelcomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+        //透明状态栏
+//        StatusBarUtil.setTranslucent(this)
+        StatusBarUtil.setTranslucentForCoordinatorLayout(this,112)
         playVideo()
         welcomeVideo.setOnCompletionListener({ playVideo() }) //循环播放
-        countDown(4)
+        countDown(2)
 
     }
 

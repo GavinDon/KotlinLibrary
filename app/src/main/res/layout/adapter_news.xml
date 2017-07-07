@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/item_press"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/ada_iv"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/ada_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingRight="8dp"
+        android:textColor="@color/main_color"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/ada_iv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="标题来源"/>
+
+    <TextView
+        android:id="@+id/ada_tv_introduce"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingRight="8dp"
+        tools:text="容"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/ada_iv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ada_tv_title"
+        />
+
+    <TextView
+        android:id="@+id/ada_tv_from"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="bottom"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ada_iv"
+        app:layout_constraintLeft_toRightOf="@+id/ada_iv"
+        app:layout_constraintTop_toBottomOf="@+id/ada_tv_introduce"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="来源：腾讯新闻"/>
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="2017.02.23"
+        android:textColor="@color/amber_800"
+        app:layout_constraintBottom_toBottomOf="@+id/ada_tv_from"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ada_tv_introduce"/>
+
+
+</android.support.constraint.ConstraintLayout>

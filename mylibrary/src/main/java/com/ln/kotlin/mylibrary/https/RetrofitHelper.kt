@@ -19,8 +19,8 @@ object RetrofitHelper {
 
     init {
        val okHttpBuilder:OkHttpClient.Builder= OkHttpClient.Builder()
-        okHttpBuilder.connectTimeout(10,TimeUnit.MILLISECONDS)
-        okHttpBuilder.readTimeout(10,TimeUnit.MILLISECONDS)
+        okHttpBuilder.connectTimeout(10,TimeUnit.SECONDS)
+        okHttpBuilder.readTimeout(10,TimeUnit.SECONDS)
         okHttpBuilder.retryOnConnectionFailure(true)//重连
         val httpLogging=HttpLoggingInterceptor()
         httpLogging.level = HttpLoggingInterceptor.Level.BODY
@@ -31,15 +31,20 @@ object RetrofitHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpBuilder.build())
                 .build()
+
+
+    }
+    fun getRetrofit():Retrofit{
+        return  mRetrofit
     }
 
-    /**
-     * 获取APIS对象
-     * @return
-     */
-    fun create(): APIS {
-        //使用APIS
-        return mRetrofit.create(APIS::class.java)
-    }
+//    /**
+//     * 获取APIS对象
+//     * @return
+//     */
+//    fun create(): APIS {
+//        //使用APIS
+//        return mRetrofit.create(APIS::class.java)
+//    }
 
 }

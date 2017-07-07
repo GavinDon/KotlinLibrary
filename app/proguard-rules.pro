@@ -63,10 +63,9 @@
     @butterknife.* <methods>;
 }
 ##########retrofit2不参与混淆##########
--dontwarn com.squareup.okhttp.**
--keep class com.squareup.okhttp.** { *;}
 -dontwarn okio.**
-
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
 -keepattributes Signature
@@ -80,8 +79,28 @@
 
 ##########Glide不参与混淆##########
 -keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.AppGlideModule
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
 }
+
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+# --------------rxjava--------------------------------
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+# ------banner----------
+-keep class com.youth.banner.** {
+    *;
+ }
 
