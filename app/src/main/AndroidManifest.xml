@@ -20,20 +20,21 @@
             android:name=".ui.WelcomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="arouter"/>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:screenOrientation="portrait"/>
+          />
         <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.NewsActivity"
-            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.CustomErrorActivity"
             android:label="@string/error_title"

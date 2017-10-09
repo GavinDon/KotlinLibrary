@@ -38,10 +38,17 @@ class WebViewActivity : AppCompatActivity() {
             domStorageEnabled = true
             javaScriptCanOpenWindowsAutomatically = false
             setSupportMultipleWindows(false)
-            allowFileAccess
+            allowFileAccess = false //禁止使用file
             useWideViewPort = true
             loadWithOverviewMode = true
             cacheMode = WebSettings.LOAD_NO_CACHE
+            useWideViewPort = true
+            // //适配手机大小
+            layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+            loadWithOverviewMode = true
+            setSupportZoom(true)
+            builtInZoomControls = true
+            displayZoomControls = false
         }
         mWebView.run {
             setWebChromeClient(ChromeClient()) //进度条
@@ -68,7 +75,8 @@ class WebViewActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId.equals(android.R.id.home) && mWebView.canGoBack()) {
             mWebView.goBack()
-            this.finish()
+        } else if (item!!.itemId.equals(android.R.id.home) && webUrl.equals(toolbar.title) || getString(R.string.app_name).equals(toolbar.title)) {
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

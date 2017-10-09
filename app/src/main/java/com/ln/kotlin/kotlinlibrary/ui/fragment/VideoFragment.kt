@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.ln.kotlin.kotlinlibrary.R
 import com.ln.kotlin.mylibrary.BaseFragment
-import org.jetbrains.anko.bundleOf
-import kotlin.properties.Delegates
 
 class VideoFragment : BaseFragment() {
     /**
@@ -16,19 +14,19 @@ class VideoFragment : BaseFragment() {
 
      */
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-         val view= LayoutInflater.from(activity).inflate(R.layout.frament_video, null)
-            return view
+        val view = LayoutInflater.from(activity).inflate(R.layout.frament_video, null)
+        return view
     }
 
-    /**
-     * 对fragment 传值
-     */
-    companion object {
-        fun newInstance(tag: String): VideoFragment {
-            val instance: VideoFragment by Delegates.notNull()
-            val args = bundleOf(Pair("type", tag))
-            instance.arguments = args
-            return instance
-        }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        init()
     }
+
+    private fun init() {
+
+    }
+
+
+
 }
