@@ -2,10 +2,10 @@ package com.ln.kotlin.kotlinlibrary.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatTextView
 import android.view.WindowManager
 import com.ln.kotlin.kotlinlibrary.R
-import com.ln.kotlin.mylibrary.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +14,7 @@ import org.jetbrains.anko.intentFor
 import java.util.concurrent.TimeUnit
 
 
-class WelcomeActivity : BaseActivity() {
+class WelcomeActivity : AppCompatActivity() {
     private var countTime: Int = 0
     //val 可以使用lazy 懒加载  var可以用lateInit 用不能为基本类型
     val txCountTime: AppCompatTextView by lazy {

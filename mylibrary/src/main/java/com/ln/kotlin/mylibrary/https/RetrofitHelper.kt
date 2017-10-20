@@ -1,5 +1,6 @@
 package com.ln.kotlin.mylibrary.https
 
+import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,9 +15,11 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitHelper {
 
+
     const  val BASE_URL:String="http://v.juhe.cn/"
     private  var mRetrofit:Retrofit
-
+    private var headersMap:MutableMap<String,String> = mutableMapOf()
+    private val mContext: Context? = null
     init {
        val okHttpBuilder:OkHttpClient.Builder= OkHttpClient.Builder()
         okHttpBuilder.connectTimeout(10,TimeUnit.SECONDS)
@@ -31,9 +34,9 @@ object RetrofitHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpBuilder.build())
                 .build()
-
-
     }
+
+
     fun getRetrofit():Retrofit{
         return  mRetrofit
     }

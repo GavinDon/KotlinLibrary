@@ -12,7 +12,8 @@ import com.ln.kotlin.kotlinlibrary.bean.NewsBean
 import com.ln.kotlin.kotlinlibrary.https.APIS
 import com.ln.kotlin.kotlinlibrary.widget.DividerItemDecoration
 import com.ln.kotlin.mylibrary.BaseFragment
-import com.ln.kotlin.mylibrary.https.RetrofitHelper
+import com.ln.kotlin.mylibrary.https.RetrofitClient
+import io.reactivex.ObservableTransformer
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -46,6 +47,14 @@ class NewsTabFragments : BaseFragment() {
         }
     }
 
+    /**
+     * Fragment和Activity相关联时调用
+     * 强转context 获取activity
+     */
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (null != arguments) {
@@ -54,7 +63,9 @@ class NewsTabFragments : BaseFragment() {
         }
     }
 
-
+    /**
+     * 当Activity完成onCreate()时调用。
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //        if (userVisibleHint &&   isViewCreated) {
@@ -114,27 +125,39 @@ class NewsTabFragments : BaseFragment() {
      * 资讯请求
      */
     private fun newsRq() {
-
-        val apis = RetrofitHelper.getRetrofit().create(APIS::class.java)
+        val apis = RetrofitClient.getInstance(this.activity).create(APIS::class.java)
         apis.news(JUHE_NEWS_KEY, newsType)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(toTransformer())
                 .subscribe(object : Observer<NewsBean> {
                     override fun onNext(t: NewsBean) {
                         mAdapter.updateData(t)
                     }
+
                     override fun onSubscribe(d: Disposable) {
                         mDisposable = d
                     }
+
                     override fun onComplete() {
                         swipeRefresh.isRefreshing = false
                     }
+
                     override fun onError(e: Throwable) {
                         swipeRefresh.isRefreshing = false
                     }
 
                 })
+
     }
+
+    /**
+     * compose
+     * @param upstream 是一个Observable
+     * @return  ObservableSource
+     */
+    fun <T> toTransformer(): ObservableTransformer<T, T> {
+        return ObservableTransformer { upstream -> upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()) }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
