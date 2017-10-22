@@ -8,7 +8,7 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.TYPE;
 
 /**
- * description:
+ * description:ttest
  * Created by liNan on 2017/6/29 10:15
  */
 @Target({TYPE,FIELD})
