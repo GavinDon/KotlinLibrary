@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initView() {
         banner.setImages(bannerList).setImageLoader(GlideLoader()).start()
+
     }
 
     inner class GlideLoader : ImageLoader() {

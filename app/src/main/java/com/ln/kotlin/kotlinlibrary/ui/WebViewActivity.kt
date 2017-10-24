@@ -51,8 +51,8 @@ class WebViewActivity : AppCompatActivity() {
             displayZoomControls = false
         }
         mWebView.run {
-            setWebChromeClient(ChromeClient()) //进度条
-            setWebViewClient(object : WebViewClient() {
+            webChromeClient = ChromeClient() //进度条
+            webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     if (!webViewSettings.loadsImagesAutomatically) {
                         webViewSettings.loadsImagesAutomatically = true
@@ -63,7 +63,7 @@ class WebViewActivity : AppCompatActivity() {
                     view?.loadUrl(webUrl)
                     return true
                 }
-            })
+            }
         }
         if (webUrl.isNullOrEmpty()) toast("url 为 空") else mWebView.loadUrl(webUrl)
 

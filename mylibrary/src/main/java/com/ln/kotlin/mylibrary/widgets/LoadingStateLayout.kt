@@ -2,11 +2,11 @@ package com.ln.kotlin.mylibrary.widgets
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.ln.kotlin.mylibrary.R
+import org.jetbrains.anko.indeterminateProgressDialog
 
 
 /**
@@ -65,7 +65,9 @@ class LoadingStateLayout : FrameLayout, View.OnClickListener {
         loadType = type
         visibility = View.VISIBLE
         when (loadType) {
-            LOADING -> Log.i("s", "LOADING")
+            LOADING -> {
+               context.indeterminateProgressDialog("").show()
+            }
             LOADING_SUCCESS -> {
                 removeChildView()
             }
@@ -86,7 +88,7 @@ class LoadingStateLayout : FrameLayout, View.OnClickListener {
         }
     }
 
-    interface OnRetryLoadListener {
+     interface OnRetryLoadListener {
         fun onRetry()
     }
 
