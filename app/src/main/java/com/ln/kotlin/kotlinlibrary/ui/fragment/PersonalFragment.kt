@@ -9,12 +9,15 @@ import android.support.design.widget.BottomSheetDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.alibaba.android.arouter.launcher.ARouter
+import android.widget.TextView
 import com.ln.kotlin.kotlinlibrary.R
+import com.ln.kotlin.kotlinlibrary.ui.TestActivity
 import com.ln.kotlin.mylibrary.BaseFragment
 import com.ln.kotlin.mylibrary.https.AlmightyDialog
 import com.ln.kotlin.mylibrary.widgets.LoadingStateLayout
 import kotlinx.android.synthetic.main.frament_personal.*
+import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -39,9 +42,8 @@ class PersonalFragment : BaseFragment() {
         popupDialog()
         val gd = GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, intArrayOf(Color.parseColor("#e0e0e0"), Color.BLUE))
         btn.background = gd
-        // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
+
         val test = """fsdf
-        |fsd
         |fsd
         |fsd""".trimMargin()
         btn.text = test
@@ -59,7 +61,7 @@ class PersonalFragment : BaseFragment() {
 
         val mBottomSheetDialog = BottomSheetDialog(activity)
         val view = LayoutInflater.from(this.activity).inflate(R.layout.dialog_bottom_sheet, null, false)
-        val tak=view.findViewById(R.id.takePhoto)
+        val tak:TextView=view.find(R.id.tvChoicePhoto)
         mBottomSheetDialog.setContentView(view)
         headBackImg.setOnClickListener {
             if (mBottomSheetDialog.isShowing) {
@@ -68,11 +70,9 @@ class PersonalFragment : BaseFragment() {
                 mBottomSheetDialog.show()
             }
         }
-        tak.setOnClickListener {
-                    ARouter.getInstance().build("/ui/TestActivity")
-                            .navigation()
+       tak.setOnClickListener {
+            startActivity<TestActivity>()
         }
-
         info.setOnClickListener {
             val almightDialog = AlmightyDialog()
             almightDialog.show(childFragmentManager, "dialog")
